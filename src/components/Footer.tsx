@@ -1,7 +1,11 @@
+import Link from "next/link";
 import SocialLinks from "./SocialLinks";
 import NavigationLinks from "./NavigationLinks";
+import { sanityFetch } from "@/sanity/lib/live";
+import { ALL_CATEGORY_QUERY } from "@/sanity/lib/queries";
 
-export default function Footer() {
+export default async function Footer() {
+  const { data: categories } = await sanityFetch({ query: ALL_CATEGORY_QUERY });
   return (
     <footer className="bg-black py-14 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
@@ -38,11 +42,18 @@ export default function Footer() {
           {/* Photography Categories */}
           <div className="md:col-span-3 space-y-3">
             <h5 className="text-lg font-semibold">Photography</h5>
-            <NavigationLinks
-              type="photography"
-              className="space-y-2"
-              linkClassName="text-white/80 hover:text-white text-base"
-            />
+            <div className="space-y-2">
+              {categories?.map((cat) => (
+                <div key={cat._id}>
+                  <Link
+                    href={`/${cat.slug?.current ?? ""}`}
+                    className="text-white/80 hover:text-white text-base"
+                  >
+                    {cat.title}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Contact Info */}

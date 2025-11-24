@@ -9,11 +9,11 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 md:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 rounded-2xl bg-black/80 px-3 py-3 backdrop-blur md:flex-row md:items-center md:justify-between md:rounded-none md:bg-transparent md:px-0 md:py-0 md:backdrop-blur-none">
+    <header className="absolute inset-x-0 top-0 z-50 px-2 pt-3 sm:px-4 md:px-6">
+      <div className="flex w-full flex-col gap-3 rounded-2xl bg-black/80 px-3 py-3 backdrop-blur md:flex-row md:items-center md:justify-between md:gap-8 md:rounded-none md:bg-transparent md:px-0 md:py-1 md:backdrop-blur-none">
         {/* Brand */}
-        <div className="flex w-full items-center justify-between md:w-auto md:justify-start">
-          <div className="flex items-center gap-3">
+        <div className="flex w-full items-center justify-between md:w-auto md:justify-start md:gap-4">
+          <div className="flex items-center gap-3 md:gap-4">
             <img
               src="/logo.png"
               alt="Noah Judelson Photography logo"
@@ -45,7 +45,7 @@ export default function Header() {
         </div>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-5 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           <NavigationLinks
             type="main"
             className="flex flex-wrap justify-center gap-4"
