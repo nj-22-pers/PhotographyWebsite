@@ -18,7 +18,7 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="scroll-container">
+    <div className="scroll-container pt-28 md:pt-0">
       {/* Evenly spaced category panels */}
       <main className="grid min-h-screen grid-cols-1 md:grid-cols-3">
         {categories.map((category) => (
