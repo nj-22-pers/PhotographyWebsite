@@ -3,43 +3,77 @@ import NavigationLinks from "./NavigationLinks";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 py-12 text-white">
-      <div className="container mx-auto px-4">
-        <div className="grid gap-8 md:grid-cols-4">
+    <footer className="bg-black py-14 text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        <div className="grid gap-10 md:grid-cols-12 md:items-start">
           {/* Brand */}
-          <div>
-            <h4 className="mb-4 text-2xl font-bold">Noah Judelson</h4>
-            <p className="text-gray-400">
-              Photographing landscapes, wildlife, aircraft, and whatever else
-              catches my eye.
+          <div className="md:col-span-4 space-y-4">
+            <div className="flex items-center gap-4">
+              <img
+                src="/logo.png"
+                alt="Noah Judelson Photography logo"
+                className="h-16 w-16 rounded-md object-contain shadow-lg sm:h-20 sm:w-20"
+              />
+              <div>
+                <h4 className="text-2xl font-bold">Noah Judelson</h4>
+                <p className="text-white/70">Photography</p>
+              </div>
+            </div>
+            <p className="text-white/70 leading-relaxed">
+              Astrophotography, landscape, motion, wildlife, real estate, and
+              vertical wallpaper photography. Prints and licensing available.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h5 className="mb-4 text-lg font-semibold">Quick Links</h5>
-            <NavigationLinks type="main" />
+          <div className="md:col-span-3 space-y-3">
+            <h5 className="text-lg font-semibold">Quick Links</h5>
+            <NavigationLinks
+              type="main"
+              className="space-y-2"
+              linkClassName="text-white/80 hover:text-white text-base"
+            />
           </div>
 
           {/* Photography Categories */}
-          <div>
-            <h5 className="mb-4 text-lg font-semibold">Photography</h5>
-            <NavigationLinks type="photography" />
+          <div className="md:col-span-3 space-y-3">
+            <h5 className="text-lg font-semibold">Photography</h5>
+            <NavigationLinks
+              type="photography"
+              className="space-y-2"
+              linkClassName="text-white/80 hover:text-white text-base"
+            />
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h5 className="mb-4 text-lg font-semibold">Contact</h5>
-            <ul className="space-y-2 text-gray-400">
-              <li>📧 judelsonnoah@gmail.com</li>
-              <li>📱 (508) 776-8473</li>
-              <li>📍 Boulder, CO | Cape Cod, MA</li>
+          <div className="md:col-span-2 space-y-3">
+            <h5 className="text-lg font-semibold">Contact</h5>
+            <ul className="space-y-3 text-white/80">
+              <li>
+                <div className="text-sm uppercase tracking-wide text-white/50">
+                  Email
+                </div>
+                <div className="text-base">judelsonnoah@gmail.com</div>
+              </li>
+              <li>
+                <div className="text-sm uppercase tracking-wide text-white/50">
+                  Phone
+                </div>
+                <div className="text-base">(508) 776-8473</div>
+              </li>
+              <li>
+                <div className="text-sm uppercase tracking-wide text-white/50">
+                  Locations
+                </div>
+                <div className="text-base">Boulder, CO</div>
+                <div className="text-base">Cape Cod, MA</div>
+              </li>
             </ul>
-            <SocialLinks className="mt-4 flex gap-2" />
+            <SocialLinks className="mt-3 flex gap-3" />
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400">
+        <div className="mt-10 border-t border-white/10 pt-8 text-center text-white/60">
           <p>&copy; 2025 Noah Judelson Photography. All rights reserved.</p>
         </div>
       </div>
