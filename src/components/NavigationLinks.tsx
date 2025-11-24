@@ -17,7 +17,7 @@ export default function NavigationLinks({
     { href: "/", label: "Home" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/contact", label: "Contact" },   // ⭐ Added Contact
   ];
 
   const photographyLinks = [
