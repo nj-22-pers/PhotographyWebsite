@@ -36,7 +36,7 @@ export default async function HomePage() {
                 }
                 preview={category.photo!.preview!}
                 className="absolute top-0 left-0 z-1 h-full w-full object-cover select-none"
-                width={1400}
+                width={2200}
               />
               {/* Gradient overlay for better text readability */}
               <div

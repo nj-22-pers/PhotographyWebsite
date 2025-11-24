@@ -47,7 +47,10 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ galleryData }) => {
                 onClick={open}
                 id={photo.id!}
                 alt={photo.alt || `${galleryData.category.title} photograph`}
-                width={galleryData.category.columnWidth!}
+                width={Math.min(
+                  Math.max((galleryData.category.columnWidth ?? 600) * 2, 1200),
+                  photo.dimensions?.width ?? 2000,
+                )}
                 style={{
                   display: "block",
                   maxWidth: "100%",

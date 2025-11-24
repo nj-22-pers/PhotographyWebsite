@@ -8,9 +8,25 @@ export const CATEGORY_QUERY = defineQuery(`*[
     "id": asset->_id,
    "url": asset->url,
    alt,
-   "preview": asset->metadata.lqip,
+  "preview": asset->metadata.lqip,
   }
   }`);
+
+export const ALL_CATEGORY_QUERY = defineQuery(`*[
+  _type == "category"
+  && defined(slug.current)
+]|order(title asc){
+  _id,
+  title,
+  description,
+  slug,
+  "photo": coverPhoto{
+    "id": asset->_id,
+    "url": asset->url,
+    alt,
+    "preview": asset->metadata.lqip,
+  }
+}`);
 
 export const PHOTO_QUERY = defineQuery(`*[
 _type == "category" &&

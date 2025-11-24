@@ -19,8 +19,8 @@ export function About(props: NonNullable<ABOUT_QUERYResult>) {
                 preview={image.preview}
                 mode="cover"
                 className="h-auto w-full max-w-full rounded-lg shadow-2xl"
-                width={600}
-                height={800}
+                width={1400}
+                height={1800}
               />
             </div>
           </div>
