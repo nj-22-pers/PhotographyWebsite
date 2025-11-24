@@ -2,25 +2,40 @@
 
 import { FormEvent, useState } from "react";
 
+type SubmitState = "idle" | "sending" | "success" | "error";
+
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<SubmitState>("idle");
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
+    setStatus("sending");
+    setError("");
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    setLoading(false);
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        setStatus("error");
+        setError(
+          data?.error || "Unable to send message right now. Please try again."
+        );
+        return;
+      }
 
-    if (res.ok) {
-      setSent(true);
+      setStatus("success");
       setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setError("Something went wrong. Please try again.");
     }
   }
 
@@ -29,7 +44,6 @@ export default function ContactPage() {
       <h1 className="text-4xl font-bold mb-6">Contact Me</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-
         <div>
           <label className="block mb-2 font-medium">Name</label>
           <input
@@ -63,16 +77,19 @@ export default function ContactPage() {
         </div>
 
         <button
-          disabled={loading}
-          className="bg-black text-white py-3 px-6 rounded-lg w-full"
+          disabled={status === "sending"}
+          className="bg-black text-white py-3 px-6 rounded-lg w-full disabled:opacity-70"
         >
-          {loading ? "Sending..." : "Send Message"}
+          {status === "sending" ? "Sending..." : "Send Message"}
         </button>
 
-        {sent && (
+        {status === "success" && (
           <p className="text-green-600 font-medium mt-4">
             Message sent successfully!
           </p>
+        )}
+        {status === "error" && (
+          <p className="text-red-600 font-medium mt-4">{error}</p>
         )}
       </form>
     </div>
