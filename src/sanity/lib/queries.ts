@@ -3,7 +3,8 @@ import { defineQuery } from "next-sanity";
 export const CATEGORY_QUERY = defineQuery(`*[
   _type == "category"
   && defined(slug.current)
-]|order(title asc)[0...3]{
+  && coalesce(showOnHomepage, true)
+]|order(coalesce(homepageOrder, 9999) asc, title asc)[0...6]{
   _id, title, slug, description, "photo": coverPhoto{
     "id": asset->_id,
    "url": asset->url,

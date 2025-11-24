@@ -33,6 +33,21 @@ export const categoryType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "showOnHomepage",
+      type: "boolean",
+      title: "Show on homepage",
+      description: "Toggle to choose which categories appear on the homepage.",
+      initialValue: true,
+    }),
+    defineField({
+      name: "homepageOrder",
+      type: "number",
+      title: "Homepage order",
+      description:
+        "Lower numbers appear first on the homepage. Leave blank to use alphabetical order.",
+      validation: (rule) => rule.min(0).max(9999).precision(0),
+    }),
+    defineField({
       name: "coverPhoto",
       type: "image",
       options: {
