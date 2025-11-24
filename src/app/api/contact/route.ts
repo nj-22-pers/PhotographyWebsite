@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { client } from "@/src/sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
