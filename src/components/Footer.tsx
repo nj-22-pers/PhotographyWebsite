@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import SocialLinks from "./SocialLinks";
 import NavigationLinks from "./NavigationLinks";
 import { sanityFetch } from "@/sanity/lib/live";
@@ -13,10 +14,13 @@ export default async function Footer() {
           {/* Brand */}
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/logo.png"
                 alt="Noah Judelson Photography logo"
+                width={80}
+                height={80}
                 className="h-16 w-16 rounded-md object-contain shadow-lg sm:h-20 sm:w-20"
+                priority
               />
               <div>
                 <h4 className="text-2xl font-bold">Noah Judelson</h4>

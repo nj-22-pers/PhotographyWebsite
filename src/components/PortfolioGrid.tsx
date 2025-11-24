@@ -45,7 +45,7 @@ export default function PortfolioGrid({ categories }: { categories: Category[] }
           sensitivity: "base",
         });
       })
-      .map(({ __index, ...rest }) => rest);
+      .map(({ __index: _unused, ...rest }) => rest);
   }, [categories, sort]);
 
   const cards = useMemo(
