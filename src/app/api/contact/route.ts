@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { client } from "@/sanity/lib/client";
+import { token } from "@/sanity/lib/token";
 
 export async function POST(req: Request) {
   try {
@@ -22,28 +23,52 @@ export async function POST(req: Request) {
       );
     }
 
+    if (!token) {
+      console.error("SANITY_API_READ_TOKEN is not set (needs write permissions)");
+      return NextResponse.json(
+        { error: "Data store not configured" },
+        { status: 500 }
+      );
+    }
+
     // 1. Store message in Sanity
-    await client.create({
-      _type: "contactMessage",
-      name,
-      email,
-      message,
-      createdAt: new Date().toISOString(),
-    });
+    try {
+      await client.create({
+        _type: "contactMessage",
+        name,
+        email,
+        message,
+        createdAt: new Date().toISOString(),
+      });
+    } catch (createErr) {
+      console.error("Sanity write failed", createErr);
+      return NextResponse.json(
+        { error: "Unable to save message. Check Sanity token permissions." },
+        { status: 500 }
+      );
+    }
 
     // 2. Send email via Resend
-    const resend = new Resend(apiKey);
-    await resend.emails.send({
-      from: "Website Contact Form <onboarding@resend.dev>",
-      to: "judelsonnoah@gmail.com",
-      subject: `New Contact Message from ${name}`,
-      html: `
-        <h2>New Contact Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong><br/>${message}</p>
-      `,
-    });
+    try {
+      const resend = new Resend(apiKey);
+      await resend.emails.send({
+        from: "Website Contact Form <onboarding@resend.dev>",
+        to: "judelsonnoah@gmail.com",
+        subject: `New Contact Message from ${name}`,
+        html: `
+          <h2>New Contact Message</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong><br/>${message}</p>
+        `,
+      });
+    } catch (emailErr) {
+      console.error("Resend send failed", emailErr);
+      return NextResponse.json(
+        { error: "Email failed to send. Check Resend key/domain." },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
