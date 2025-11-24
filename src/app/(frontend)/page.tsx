@@ -18,9 +18,10 @@ type Category = {
 
 export default async function HomePage() {
   const { data: categories } = await sanityFetch({ query: CATEGORY_QUERY });
+  const typedCategories = (categories ?? []) as Category[];
 
   // Handle case where no categories exist
-  if (!categories || categories.length === 0) {
+  if (!typedCategories || typedCategories.length === 0) {
     return (
       <EmptyContent
         contentType="Photo Categories"
@@ -33,7 +34,7 @@ export default async function HomePage() {
     <div className="scroll-container pt-28 md:pt-0">
       {/* Evenly spaced category panels */}
       <main className="grid min-h-screen grid-cols-1 md:grid-cols-3">
-        {categories.map((category) => (
+        {typedCategories.map((category) => (
           <Link
             key={`${category._id}`}
             href={`/${category?.slug?.current}`}
