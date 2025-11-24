@@ -7,6 +7,12 @@ import { ALL_CATEGORY_QUERY } from "@/sanity/lib/queries";
 
 export default async function Footer() {
   const { data: categories } = await sanityFetch({ query: ALL_CATEGORY_QUERY });
+  type FooterCategory = {
+    _id: string;
+    title: string;
+    slug?: { current?: string };
+  };
+  const typedCategories = (categories ?? []) as FooterCategory[];
   return (
     <footer className="bg-black py-14 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
@@ -47,7 +53,7 @@ export default async function Footer() {
           <div className="md:col-span-3 space-y-3">
             <h5 className="text-lg font-semibold">Photography</h5>
             <div className="space-y-2">
-              {categories?.map((cat) => (
+              {typedCategories.map((cat) => (
                 <div key={cat._id}>
                   <Link
                     href={`/${cat.slug?.current ?? ""}`}
