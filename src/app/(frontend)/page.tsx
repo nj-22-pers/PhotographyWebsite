@@ -4,6 +4,18 @@ import { sanityFetch } from "@/sanity/lib/live";
 import Image from "../../components/ImageWrapper";
 import { CATEGORY_QUERY } from "@/sanity/lib/queries";
 
+type Category = {
+  _id: string;
+  title: string;
+  description?: string;
+  slug?: { current?: string };
+  photo?: {
+    id?: string;
+    alt?: string;
+    preview?: string;
+  };
+};
+
 export default async function HomePage() {
   const { data: categories } = await sanityFetch({ query: CATEGORY_QUERY });
 
