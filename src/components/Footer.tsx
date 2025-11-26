@@ -19,7 +19,10 @@ export default async function Footer() {
         <div className="grid gap-10 md:grid-cols-12 md:items-start">
           {/* Brand */}
           <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center gap-4">
+            <div
+              className="flex items-center gap-4 text-white"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               <Image
                 src="/logo.png"
                 alt="Noah Judelson Photography logo"
@@ -29,8 +32,8 @@ export default async function Footer() {
                 priority
               />
               <div>
-                <h4 className="text-2xl font-bold">Noah Judelson</h4>
-                <p className="text-white/70">Photography</p>
+                <h4 className="text-2xl font-semibold">Noah Judelson</h4>
+                <p className="text-lg font-medium text-white">Photography</p>
               </div>
             </div>
             <p className="text-white/70 leading-relaxed">

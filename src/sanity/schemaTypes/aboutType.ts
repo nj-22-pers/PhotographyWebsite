@@ -22,6 +22,7 @@ export const aboutType = defineType({
       name: "image",
       title: "Image",
       type: "image",
+      options: { hotspot: true },
       validation: (rule) => rule.required(),
       fields: [
         defineField({

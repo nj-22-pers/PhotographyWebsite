@@ -41,7 +41,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-black text-white">
-      <div className="mx-auto max-w-4xl px-4 pt-28 pb-16 sm:px-6 md:px-8 md:pt-32">
+      <div className="mx-auto max-w-4xl px-4 pt-36 pb-16 sm:px-6 md:px-8 md:pt-44">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur sm:p-10">
           <div className="mb-8 space-y-2 text-center md:text-left">
             <p className="text-sm uppercase tracking-[0.2em] text-white/60">

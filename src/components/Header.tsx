@@ -19,11 +19,14 @@ export default function Header() {
               alt="Noah Judelson Photography logo"
               className="h-12 w-12 rounded-md object-contain shadow-md sm:h-14 sm:w-14"
             />
-            <div className="leading-tight">
-              <h2 className="text-3xl font-bold text-white drop-shadow-lg sm:text-4xl md:text-4xl">
+            <div
+              className="leading-tight text-white"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              <h2 className="text-3xl font-semibold drop-shadow-lg sm:text-4xl md:text-4xl">
                 Noah Judelson
               </h2>
-              <p className="text-sm text-gray-100 drop-shadow-md sm:text-base">
+              <p className="text-base font-medium drop-shadow-md sm:text-lg">
                 Photography
               </p>
             </div>

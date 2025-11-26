@@ -57,5 +57,7 @@ export const ABOUT_QUERY = defineQuery(`*[
    "url": asset->url,
    alt,
    "preview": asset->metadata.lqip,
+   hotspot,
+   crop,
   },
 }`);
