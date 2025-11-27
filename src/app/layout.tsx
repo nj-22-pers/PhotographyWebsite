@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SanityLive } from "@/sanity/lib/live";
 import { Cormorant_Infant, Plus_Jakarta_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -43,6 +45,8 @@ export default function RootLayout({
       <body className="bg-black text-white">
         {children}
         <SanityLive />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
