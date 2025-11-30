@@ -20,10 +20,10 @@ const cormorant = Cormorant_Infant({
 export const metadata: Metadata = {
   title: "Noah Judelson Photography",
   description: "Professional photography",
-  // Use logo as the favicon
   icons: {
-    icon: { url: "/favicon.png", type: "image/png" },
-    shortcut: { url: "/favicon.png", type: "image/png" },
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
   },
 };
 
@@ -39,8 +39,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icon.png" />
       </head>
       <body className="bg-black text-white">
         {children}
